@@ -59,14 +59,29 @@ export class SimulateComponent implements OnInit {
   minVelocity = 0.09;
 
   updateCube(cube: any): void {
-    console.log(cube)
-    const acceleration = cube.force / cube.mass;
+    
+    const frictionForce = 0.2 * cube.mass * 9.8;
+    const acceleration = (cube.force - frictionForce) / cube.mass;
+    console.log(acceleration)
+    
     if (cube.velocity >= 0) {
       cube.velocity += acceleration;
+      if (cube.velocity < 0 && cube.force < frictionForce) {
+        cube.velocity = 0;
+        if (this.checkVelocityValidation(cube))
+          return;
+      }
     } else {
       cube.velocity -= acceleration;
+      if (cube.velocity > 0 && cube.force < frictionForce) {
+        cube.velocity = 0; 
+        if (this.checkVelocityValidation(cube))
+          return;
+      }
     }
+
     cube.position += cube.velocity;
+
     if (cube.position >= 380 - cube.width) {
       cube.position = 380 - cube.width;
       cube.velocity = -Math.abs(cube.velocity) * 0.8;
