@@ -14,14 +14,37 @@
         <rect _ngcontent-ng-c4137437451="" id="cube1" fill="white" width="100" height="100" y="110" x="200"></rect>
     </svg>
 </div>
+<div class="floating-table">
+    <table>
+      <tr>
+        <th>Cube</th>
+        <th>Acceleration</th>
+        <th>Velocity</th>
+        <th>Collisions</th>
+      </tr>
+      <tr>
+        <td>1. Cube</td>
+        <td>{{ cube2.acceleration.toFixed(2) }}</td>
+        <td>{{ cube2.velocity.toFixed(2) }}</td>
+        <td>{{ cube2.collisions }}</td>
+      </tr>
+      <tr>
+        <td>2. Cube</td>
+        <td>{{ cube1.acceleration.toFixed(2) }}</td>
+        <td>{{ cube1.velocity.toFixed(2) }}</td>
+        <td>{{ cube1.collisions }}</td>
+      </tr>
+    </table>
+  </div>
+  
 <div id="ui">
     <div class="small-inputs">
-        <input id="cube1-weight" class="text-input" placeholder="1. cube weight" type="text"/>
-        <input id="cube1-force" class="text-input" placeholder="1. cube force" type="text"/>
+        <input id="cube2-weight" class="text-input" placeholder="1. cube weight" type="text"/>
+        <input id="cube2-force" class="text-input" placeholder="1. cube force" type="text"/>
     </div>
     <button type="button" (click)="startSimulation()">Start</button>
     <div class="big-inputs">
-        <input id="cube2-weight" class="text-input" placeholder="2. cube weight" type="text"/>
-        <input id="cube2-force" class="text-input" placeholder="2. cube force" type="text"/>
+        <input id="cube1-weight" class="text-input" placeholder="2. cube weight" type="text"/>
+        <input id="cube1-force" class="text-input" placeholder="2. cube force" type="text"/>
     </div>
 </div>

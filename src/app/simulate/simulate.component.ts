@@ -7,22 +7,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SimulateComponent implements OnInit {
 
-  private cube1: any = {
+  cube1: any = {
     id: "cube1",
     mass: 0,
     force: 0,
     position: 0,
     velocity: 0,
+    acceleration: 0, 
+    collisions: 0,   
     width: 0
   };
-  private cube2: any = {
+  
+  cube2: any = {
     id: "cube2",
     mass: 0,
     force: 0,
     position: 0,
     velocity: 0,
+    acceleration: 0, 
+    collisions: 0,
     width: 0
   };
+  
   private animationFrameId: number | null = null;
   ngOnInit(): void {
   }
@@ -32,6 +38,8 @@ export class SimulateComponent implements OnInit {
       this.stopSimulation();
       return;
     }
+    this.cube1.collisions = 0;
+    this.cube2.collisions = 0;
     const xAttribute1 = (<HTMLInputElement>document.getElementById('cube1')).getAttribute('x');
     if (xAttribute1 !== null) {
       this.cube1.position = parseFloat(xAttribute1);
@@ -64,7 +72,7 @@ export class SimulateComponent implements OnInit {
     const acceleration = (cube.force - frictionForce) / cube.mass;
     cube.force *= 0.99;
     console.log(cube)
-    
+    cube.acceleration = acceleration;
     if (cube.velocity >= 0) {
       cube.velocity += acceleration;
       if (cube.velocity < 0 && cube.force < frictionForce) {
@@ -86,12 +94,14 @@ export class SimulateComponent implements OnInit {
     if (cube.position >= 380 - cube.width) {
       cube.position = 380 - cube.width;
       cube.velocity = -Math.abs(cube.velocity) * 0.8;
+      cube.collisions++;
       if (this.checkVelocityValidation(cube))
           return;
     }
     if (cube.position <= 10) {
       cube.position = 10;
       cube.velocity = Math.abs(cube.velocity) * 0.8;
+      cube.collisions++;
       if (this.checkVelocityValidation(cube))
         return;
     }
@@ -134,20 +144,19 @@ export class SimulateComponent implements OnInit {
       this.cube1.position = this.cube2.position + this.cube2.width;
     }
     if (this.cube2.position + this.cube2.width >= this.cube1.position) {
-  
+      this.cube1.collisions++;
+      this.cube2.collisions++;
       const newVelocity1 = (this.cube1.velocity * (this.cube1.mass - this.cube2.mass) + 2 * this.cube2.mass * this.cube2.velocity) / (this.cube1.mass + this.cube2.mass);
       const newVelocity2 = (this.cube2.velocity * (this.cube2.mass - this.cube1.mass) + 2 * this.cube1.mass * this.cube1.velocity) / (this.cube1.mass + this.cube2.mass);
-  
+
       this.cube1.velocity = newVelocity1;
       this.cube2.velocity = newVelocity2;
-  
       if (this.checkVelocityValidation(this.cube1) || this.checkVelocityValidation(this.cube2))
         return;
     }
   }
   
   
-
   stopSimulation(): void {
     if (this.animationFrameId !== null) {
       cancelAnimationFrame(this.animationFrameId);
