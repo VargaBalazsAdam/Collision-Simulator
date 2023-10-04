@@ -1,0 +1,64 @@
+svg 
+{
+    max-height: 80vh;
+}
+
+#ui, #simulator {
+    display: flex;
+    justify-content: center; 
+}
+
+.small-inputs, .big-inputs
+{
+    text-align: center; 
+    display: grid;
+    margin: 0 20px;
+}
+
+.text-input
+{
+    width: 25vw;
+    color: white;
+    background-color: #0000;
+    margin: 2px 0;
+}
+
+button
+{
+    color: white;
+    background-color: #0000;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+
+.floating-table {
+    position: absolute;
+    left: 50%; 
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    z-index: 1; 
+    top: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 1vw;
+    text-align: left;
+  }
+  
+@media (max-aspect-ratio: 1/1) {
+    .floating-table {
+      bottom: 20px;
+      top: auto;
+    }
+  }
