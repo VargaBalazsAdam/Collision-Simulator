@@ -1,0 +1,32 @@
+svg 
+{
+    max-height: 80vh;
+}
+
+#ui, #simulator {
+    display: flex;
+    justify-content: center; 
+}
+
+.small-inputs, .big-inputs
+{
+    text-align: center; 
+    display: grid;
+    margin: 0 20px;
+}
+
+.text-input
+{
+    width: 25vw;
+    color: white;
+    background-color: #0000;
+    margin: 2px 0;
+}
+
+button
+{
+    color: white;
+    background-color: #0000;
+    text-transform: uppercase;
+    font-weight: 400;
+}
