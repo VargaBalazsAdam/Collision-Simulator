@@ -62,7 +62,8 @@ export class SimulateComponent implements OnInit {
     
     const frictionForce = 0.2 * cube.mass * 9.8;
     const acceleration = (cube.force - frictionForce) / cube.mass;
-    console.log(acceleration)
+    cube.force *= 0.99;
+    console.log(cube)
     
     if (cube.velocity >= 0) {
       cube.velocity += acceleration;
@@ -129,8 +130,10 @@ export class SimulateComponent implements OnInit {
   }
 
   checkCollision(): void {
+    if (this.cube1.position < this.cube2.position + this.cube2.width) {
+      this.cube1.position = this.cube2.position + this.cube2.width;
+    }
     if (this.cube2.position + this.cube2.width >= this.cube1.position) {
-      const relativeVelocity = this.cube2.velocity - this.cube1.velocity;
   
       const newVelocity1 = (this.cube1.velocity * (this.cube1.mass - this.cube2.mass) + 2 * this.cube2.mass * this.cube2.velocity) / (this.cube1.mass + this.cube2.mass);
       const newVelocity2 = (this.cube2.velocity * (this.cube2.mass - this.cube1.mass) + 2 * this.cube1.mass * this.cube1.velocity) / (this.cube1.mass + this.cube2.mass);
