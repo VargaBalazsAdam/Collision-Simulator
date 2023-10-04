@@ -71,7 +71,6 @@ export class SimulateComponent implements OnInit {
     const frictionForce = 0.2 * cube.mass * 9.8;
     const acceleration = (cube.force - frictionForce) / cube.mass;
     cube.force *= 0.99;
-    console.log(cube)
     cube.acceleration = acceleration;
     if (cube.velocity >= 0) {
       cube.velocity += acceleration;
