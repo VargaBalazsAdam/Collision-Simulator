@@ -1,27 +1,43 @@
-# CollisionSimulator
+# Simulate App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
+## Description
 
-## Development server
+The Simulate App is a simple simulation application that allows you to simulate the behavior of two cubes with different masses and forces in a controlled environment. It provides a visual representation of the cubes' movement and collision events.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Screenshots
 
-## Code scaffolding
+Vertical Orientation:
+![Vertical Screenshot](image.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Horizontal Orientation:
+![Horizontal Screenshot](image-1.png)
+## Features
 
-## Build
+- Simulate the motion of two cubes.
+- Adjust the mass and force of each cube.
+- Visual representation of cube movement and collisions.
+- Start and stop the simulation.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Running unit tests
+To run the app, you need to have Angular installed. If you don't have it, you can install it using the following command:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+npm install -g @angular/cli
+```
 
-## Running end-to-end tests
+After installing Angular, navigate to the project directory and run the app:
+```bash
+ng serve
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The app will be available at `http://localhost:4200/` by default.
 
-## Further help
+## Usage
+1.    Adjust the mass and force values for both cubes in the input fields.
+2.    Click the "Start" button to initiate the simulation.
+3.    Observe the movement and collisions of the cubes in the SVG display.
+4.    Click the "Start" again button to end the simulation.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Contributing
+Contributions are welcome! If you would like to contribute to the Simulate App, please open an issue or submit a pull request.
