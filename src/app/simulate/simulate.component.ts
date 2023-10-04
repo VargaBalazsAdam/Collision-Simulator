@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./simulate.component.css']
 })
 export class SimulateComponent implements OnInit {
+
   private cube1: any = {
     id: "cube1",
     mass: 0,
@@ -113,18 +114,20 @@ export class SimulateComponent implements OnInit {
   }
 
   checkCollision(): void {
-    const relativeVelocity = this.cube2.velocity - this.cube1.velocity;
-    if (this.cube2.position + this.cube2.width >= this.cube1.position && relativeVelocity > 0) {
-      const tempVelocity1 = this.cube1.velocity + (this.cube2.mass / (this.cube1.mass + this.cube2.mass)) * relativeVelocity;
-      const tempVelocity2 = this.cube2.velocity - (this.cube1.mass / (this.cube1.mass + this.cube2.mass)) * relativeVelocity;
+    if (this.cube2.position + this.cube2.width >= this.cube1.position) {
+      const relativeVelocity = this.cube2.velocity - this.cube1.velocity;
   
-      this.cube1.velocity = tempVelocity1;
-      this.cube2.velocity = tempVelocity2;
+      const newVelocity1 = (this.cube1.velocity * (this.cube1.mass - this.cube2.mass) + 2 * this.cube2.mass * this.cube2.velocity) / (this.cube1.mass + this.cube2.mass);
+      const newVelocity2 = (this.cube2.velocity * (this.cube2.mass - this.cube1.mass) + 2 * this.cube1.mass * this.cube1.velocity) / (this.cube1.mass + this.cube2.mass);
+  
+      this.cube1.velocity = newVelocity1;
+      this.cube2.velocity = newVelocity2;
   
       if (this.checkVelocityValidation(this.cube1) || this.checkVelocityValidation(this.cube2))
         return;
     }
   }
+  
   
 
   stopSimulation(): void {
